@@ -5,8 +5,8 @@ Vagrant.require_version '>= 1.5'
 
 # Change these two paths to folders 
 # FRONTEND  = "../linkip-frontend/"
-BACKEND_PATH   = "../linkip-backend/"
-BACKEND_NAME   = "linkip-backend"
+BACKEND_PATH   = "../linkip-backend/" #change this value only!!
+BACKEND_NAME   = "linkip-backend" #do not change this value
 
 def require_plugins(plugins = {})
   needs_restart = false
