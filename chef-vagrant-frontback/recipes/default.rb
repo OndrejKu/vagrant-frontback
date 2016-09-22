@@ -1,5 +1,17 @@
 include_recipe "ruby_rbenv"
 
+mysql_service 'foo' do
+  port '3306'
+  bind_address '0.0.0.0'
+  version '5.7'
+  initial_root_password ''
+  action [:create, :start]
+end
+
+mysql_client 'default' do
+  action :create
+end
+
 rbenv_script "install_backend" do
   rbenv_version "2.2.1"
   user          "vagrant"

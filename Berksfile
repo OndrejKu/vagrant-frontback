@@ -2,8 +2,10 @@ source "https://supermarket.chef.io"
 
 cookbook 'apt'
 cookbook 'build-essential', '~> 6.0.0'
-cookbook 'libffi-dev', git: 'https://github.com/zchee/libffi-dev-cookbook' #path: '../libffi-dev-cookbook' 
-cookbook 'mysql', '5.5.3'
+cookbook 'libffi-dev', github: 'zchee/libffi-dev-cookbook' # 
+#cookbook 'mysql', '5.3.0'
+cookbook 'mysql', '8.0.3'
+cookbook 'libmysqlclient', '~> 0.1.0'
 cookbook 'postgresql', '~> 4.0.6'
 cookbook 'ruby_build'
 #cookbook 'rbenv', git: 'https://github.com/aminin/chef-rbenv.git'

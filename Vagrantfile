@@ -31,14 +31,15 @@ require_plugins \
   'vagrant-vbguest' => '0.12.0' 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "bento/ubuntu-16.04"
+  config.ssh.forward_agent = true
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 3000, host: 3000 
   config.vm.network "forwarded_port", guest: 4567, host: 4567
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
   config.vm.synced_folder "#{BACKEND_PATH}", "/project/#{BACKEND_NAME}",
@@ -72,8 +73,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "ruby_rbenv::user"
     #chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "vim"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "mysql::client"
+    chef.add_recipe "libmysqlclient"
     chef.add_recipe "chef-vagrant-frontback"
 
     # Install Ruby 2.2.1 and Bundler
@@ -94,9 +94,6 @@ Vagrant.configure("2") do |config|
             ]
           }
         }]
-      },
-      mysql: {
-        server_root_password: ''
       }
     }
   end
